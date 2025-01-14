@@ -3,28 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Kata</title>
+    <title>Cek Jelmaan | by Dedy A dedy-a-muzawwir</title>
     <link rel="icon" href="https://play-lh.googleusercontent.com/vjRGLMBA4vjTfF2_8bYo_rVSJlLQjquPsANuKf0x8dSktDV2ipvhwO9jDlP7_GrXlM2t=w240-h480-rw" type="image/x-icon">
     <style>
         /* Reset style untuk body */
-        body {
-            font-family: 'Arial', sans-serif;
-            
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
+     
 
         .background-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background: url('https://static.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p2/01/2024/09/17/Ilustrasi-khodam-1034700849.jpg');
             background-size: cover;
             filter: blur(8px); /* Efek blur pada background */
@@ -84,7 +74,8 @@
             z-index: 1; /* Memastikan konten berada di atas background */
         }
         button:hover {
-            background-color: #263753;
+            background-color: rgb(254, 255, 255);
+            color: #2a869d;
         }
 
         /* Hasil */
@@ -119,7 +110,7 @@
         <h1>Selamat datang, Warga!</h1>
         <p>Masukkan nama Anda:</p>
         <input autofocus type="text" id="namaInput" placeholder="Nama Anda">
-        <button onclick="generateRandomWords()">Tampilkan Hasil</button>
+        <button onclick="generateRandomWords()"><b>Tampilkan Hasil</b></button>
         <p id="hasil"></p>
         <div class="footer">
             <p>dibikin dengan ganteng oleh <a target="_blank" href="https://damz93.github.io/dedy-a-muzawwir/">D.A.M.Z</a></p>
