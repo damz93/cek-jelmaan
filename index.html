@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Kata</title>
+    <link rel="icon" href="https://play-lh.googleusercontent.com/vjRGLMBA4vjTfF2_8bYo_rVSJlLQjquPsANuKf0x8dSktDV2ipvhwO9jDlP7_GrXlM2t=w240-h480-rw" type="image/x-icon">
+    <style>
+        /* Reset style untuk body */
+        body {
+            font-family: 'Arial', sans-serif;
+            
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://static.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/p2/01/2024/09/17/Ilustrasi-khodam-1034700849.jpg');
+            background-size: cover;
+            filter: blur(8px); /* Efek blur pada background */
+            z-index: -1; /* Pastikan background berada di bawah konten */
+        }
+
+        /* Container utama */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Heading */
+        h1 {
+            color: #2a869d;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Input text */
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        /* Button */
+        button {
+            padding: 10px 20px;
+            background-color: #2a869d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+         /* Container untuk konten utama */
+         .container {
+            background: rgba(255, 255, 255, 0.9); /* Membuat background putih agak transparan */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            z-index: 1; /* Memastikan konten berada di atas background */
+        }
+        button:hover {
+            background-color: #263753;
+        }
+
+        /* Hasil */
+        #hasil {
+            margin-top: 20px;
+            font-size: 2em;  /* Ukuran font besar */
+            font-weight: bold;
+            color: #264653;
+            word-wrap: break-word;
+            text-transform: uppercase;  /* Mengubah teks menjadi kapital */
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+            input[type="text"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="background-container"></div>
+    <div class="container">
+        <h1>Selamat datang, Warga!</h1>
+        <p>Masukkan nama Anda:</p>
+        <input autofocus type="text" id="namaInput" placeholder="Nama Anda">
+        <button onclick="generateRandomWords()">Tampilkan Hasil</button>
+        <p id="hasil"></p>
+    </div>
+
+    <script>
+        // Tiga array yang masing-masing berisi 100 kata
+        const array1 = [
+            "Kursi goyang", "Serbet robek", "Daster pembantu", "Ember bocor", "Sapu lantai",
+            "Lampu mati", "Selimut koyak", "Topi penyihir", "Tikar bulu", "Bantal empuk",
+            "Cangkir pecah", "Tikar bulu", "Kompor rusak", "Gelas retak", "Meja berdebu",
+            "Tempat sampah penuh", "Panci gosong", "Jendela pecah", "Sandal jepit", "Handuk basah",
+            "Lampu tidur", "Gelas tumpah", "Sapu lidi", "Kipas angin rusak", "Rak buku patah",
+            "Sikat gigi rusak", "Gunting tumpul", "Sapu tangan robek", "Toples kosong", "Celana robek",
+            "Telenan kayu", "Susu tumpah", "Piring pecah", "Sepatu karet", "Kacamata kabur",
+            "Tempat pensil sobek", "Sofa berdebu", "Lantai licin", "Kompor gas", "Penggaris patah",
+            "Tas jinjing", "Kotak makan tumpah", "Kertas robek", "Laci jamur", "Mangkuk kotor",
+            "Pemanggang roti rusak", "Tote bag beludru", "Pijakan kaki", "Tali sepatu putus", "Tisu basah",
+            "Kulkas berisik", "Sapu tangan", "Baju tidur bolong", "Gelas plastik", "Senter rusak",
+            "Kursi patah", "Kunci hilang", "Tumpukan buku", "Kalkulator rusak", "Kipas tangan",
+            "Tas belanja robek", "Cangkir mini", "Ransel penuh", "Mug lucu", "Tempat tidur rusak",
+            "Gantungan baju", "Alas meja", "Panci lebar", "Sepatu rusak", "Selimut lusuh",
+            "Kursi lipat", "Kantong plastik sobek", "Keranjang belanja", "Gantungan kunci", "Panci kentang",
+            "Buku catatan kosong", "Jaket robek", "Dudukan toilet", "Mikrofon rusak", "Dasi kaku",
+            "Koper rusak", "Kotak alat", "Kartu kosong", "Topi rusak", "Tampan tumpul",
+            "Penutup botol", "Sambungan kabel", "Sendok kecil", "Sapu bersih", "Dudukan kursi",
+            "Penyemprot tanaman", "Tenda robek", "Pengering rambut rusak", "Panjang kabel", "Kotak peralatan",
+            "Toples kaca", "Keranjang kotor", "Gelas kotor", "Mangkuk besar", "Mesin cuci rusak",
+            "Kamera rusak", "Pisau dapur", "Tempat sabun", "Saringan teh", "Baju pengantin rusak",
+            "Komputer hang", "Tas punggung", "Meja makan", "Kulkas rusak", "Alas kaki",
+            "Tempat duduk", "Kotak makan rusak", "Mikrofon pecah", "Baju renang", "Penghapus papan",
+            "Gantungan tas", "Rak sepatu", "Matic rusak", "Setrika panas", "Sapu panjang",
+            "Toples plastik", "Papan tulis berdebu", "Kemeja robek", "Gelas berlumut", "Lampu gantung",
+            "Baterai habis", "Mug kotor", "Tikar kecil", "Bunga plastik", "Spatula rusak",
+            "Wajan bocor", "Gelas pecah", "Gantungan pakaian", "Kaleng minuman tumpah", "Gelas berdebu",
+            "Obeng patah", "Pemanggang rusak", "Piring melengkung", "Sapu jala", "Peti mati",
+            "Baju pelancong", "Topi rusak", "Bantal berlubang", "Serbet bersih", "Kantong belanja",
+            "Sapu gulung", "Laci berisik", "Kompor rusak", "Laci berdebu", "Buku tebal",
+            "Kursi gempal", "Perlengkapan kebun", "Gelas serut", "Pembuka botol", "Toples kosong",
+            "Gunting rambut", "Meja bulat", "Kasur berbusa", "Cangkir besar", "Kursi empuk",
+            "Penjepit baju", "Ember air", "Penyaring teh", "Gelas air", "Peralatan makan",
+            "Sapu panjang", "Ember bekas", "Toples kaca", "Tempat permen", "Papan kasur",
+            "Tempat tisu", "Ember cor", "Peti kayu", "Tempat roti", "Baskom kecil", "Kursi empuk",
+            "Pijak kaki sofa", "Tempurung kaca", "Gantungan dari plastik", "Alat pencuci tangan", "Tali bedak",
+            "Gelas berantakan", "Topi berkabut", "Kamera terkunci", "Pisau terpelintir", "Baja kotor",
+            "Gulung kertas", "Tumpukan ember", "Batu miring", "Sabun kecil", "Sampo berbau",
+            "Sisir putus", "Gelas lonjong", "Panci dan piring", "Kaca pecah", "Karpet kecil",
+            "Ember penuh air", "Penyaring susu", "Tempat makan berdebu", "Sepatu robek", "Bulu pel",
+            "Baldi rusak", "Sabun cair", "Sendok teh", "Sikat gigi berdebu", "Sapu lantai lusuh",
+            "Rak besar", "Kertas tumpul", "Gantungan hijau", "Keranjang plastik", "Ember tidak rata",
+            "Papan tulis putih", "Meja rotan", "Kotak pita", "Kunci baru", "Pena biru", "Lembaran kertas",
+            "Kalkulator", "Tempat kunci", "Kunci pintu", "Alat ukur", "Spidol kering", "Kotak kertas",
+            "Pembuka gelas", "Gelas miring", "Tempat bedak", "Tali sepatu rusak", "Topi rambut berantakan",
+            "Peralatan kantor", "Kursi penuh debu", "Sapu tajam", "Tempat potong rambut", "Peralatan masak",
+            "Ember besar", "Pisau pemotong", "Dasi pendek", "Toples dekorasi", "Batu pencuci tangan",
+            "Serbet kain", "Tempat piring", "Wadah susu", "Piring makan besar", "Gelas teh hangat",
+            "Gantungan dinding", "Sekop pasir", "Tempat baju", "Sikat mandi", "Kantong sampah",
+            "Ember pasir", "Gantungan pengering", "Tempat air minum", "Meja kerja", "Towel basah",
+            "Jendela rusak", "Lemari laci", "Sapu penghisap", "Palu kopong", "Toples kaca", "Tempat setrika","Kucing ceriwis", "Anjing lucu", "Kelinci gembul", "Gajah menggemaskan", "Kuda gemes",
+            "Kura-kura imut", "Burung ceria", "Ikan lincah", "Ayam lucu", "Monyet jenius",
+            "Ular bodor", "Harimau sialan", "Kambing lucu", "Domba betina", "Gajah kenyal",
+            "Singa becanda", "Bebek joget", "Bison buruk", "Rusa nyengir", "Panda beringas",
+            "Singa Bercanda", "Bison Buruk", "Kelinci Lincah", "Kucing Tiduran", "Monyet Nakal",
+    "Gajah Malas", "Bebek Berisik", "Harimau Pemalu", "Unta Lelah", "Penguin Serius",
+    "Rusa Cepat", "Kambing Gembira", "Kuda Loyo", "Panda Lucu", "Ayam Pengembara",
+    "Kelinci Tertawa", "Gorila Senang", "Serigala Tenang", "Kuda Dingin", "Marmut Bersahabat",
+    "Penyu Tua", "Burung Penuh Cinta", "Lynx Cerdik", "Singa Pemalu", "Ikan Ceria",
+    "Harimau Lincah", "Bebek Pemberani", "Kucing Canggung", "Serigala Nakal", "Domba Ceria",
+    "Penguin Bersuara", "Bison Pintar", "Marmut Kecil", "Panda Pemalu", "Koala Tiduran",
+    "Kelinci Gembira", "Monyet Jantan", "Ayam Kocak", "Lumba-lumba Lincah", "Kura-kura Pelan",
+    "Gajah Tertawa", "Kambing Lincah", "Harimau Jagoan", "Monyet Bersama", "Unta Gembira",
+    "Serigala Gila", "Kucing Rajin", "Bebek Tertawa", "Ikan Jantan", "Kuda Kocak",
+    "Pinguin Nakal", "Koala Penuh Kasih", "Gajah Lucu", "Marmut Kocak", "Kelinci Pintar",
+    "Monyet Juga Konyol", "Bison Sehat", "Unta Penuh Kasih", "Harimau Ceria", "Penguin Nakal",
+    "Ikan Nakal", "Kambing Pemberani", "Serigala Cerdas", "Kuda Gembira", "Kelinci Nakal",
+    "Ayam Lincah", "Singa Tenang", "Rusa Lucu", "Bebek Pemalu", "Monyet Pemaaf", "Ikan Lincah",
+    "Marmut Pemalu", "Panda Terbang", "Koala Canggung", "Kelinci Pemalu", "Gajah Sehat", "Singa Kocak",
+    "Burung Pengembara", "Serigala Bahagia", "Bebek Gembira", "Ikan Bahagia", "Rusa Senang",
+    "Pinguin Kocak", "Kuda Berlari", "Monyet Terlalu Ceria", "Singa Harus Tertawa", "Kucing Pemberani",
+    "Gajah Pencinta", "Marmut Ramah", "Koala Suka Tidur", "Bison Gila", "Harimau Pemberani", "Monyet Berani",
+    "Penguin Lincah", "Kelinci Menari", "Singa Suka Tidur", "Kuda Jagoan", "Ayam Cerdas", "Lynx Nakal",
+    "Penyu Ceria", "Bebek Lincah", "Monyet Suka Bermain", "Kambing Sabar", "Penguin Ramah", "Ikan Cerdas",
+    "Singa Lincah", "Unta Malas", "Harimau Nakal", "Kuda Malas", "Kelinci Suka Makan"
+
+        ];
+
+        // Fungsi untuk memilih kata acak dari sebuah array
+        function getRandomElement(arr) {
+            const randomIndex = Math.floor(Math.random() * arr.length);
+            return arr[randomIndex];
+        }
+
+        // Fungsi untuk menghasilkan kata acak dan menampilkan hasilnya
+        function generateRandomWords() {
+            const nama = document.getElementById('namaInput').value.trim(); // Ambil nama dan hilangkan spasi ekstra
+            const validNameRegex = /^[a-zA-Z]+$/; // Pastikan hanya huruf (A-Z, a-z)
+            
+            // Validasi input nama
+            if (!validNameRegex.test(nama) || nama.length < 3) {
+                alert('Nama harus terdiri dari huruf saja dan minimal 3 karakter!');
+                return;
+            }
+
+            const randomKata1 = getRandomElement(array1).toUpperCase();  // Mengubah kata menjadi kapital
+            // Gabungkan kata-kata tersebut dalam satu kalimat
+            const hasil = `Halo ${nama}, kamu adalah jelmaan ${randomKata1}`;
+
+            document.getElementById('hasil').innerText = hasil; // Menampilkan hasil di halaman
+        }
+    </script>
+</body>
+</html>
